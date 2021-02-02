@@ -3,13 +3,13 @@
 
 EAPI=7
 
-inherit perl-functions multilib-minimal vcs-clean
+inherit multilib-minimal
 
 # cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config
 
-PKG_M4_VERSION=0.28
+PKG_M4_VERSION=0.29.2
 
-COMMIT_ID="f7ced61b7a64bdac2113f4bc489a873f2be32d60"
+COMMIT_ID="3181cf6fc4e56c2f36b13e39b47d3fed8b70b9b4"
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
 HOMEPAGE="http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/"
 SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz
@@ -31,7 +31,6 @@ S=${WORKDIR}/${PN}-${COMMIT_ID}
 
 src_prepare() {
 	default
-	ecvs_clean
 
 	# Config.pm from dev-lang/perl doesn't set ARCH, only archname
 	sed -i -e '/Config/s:ARCH:archname:' pkg-config || die
@@ -62,10 +61,11 @@ multilib_src_install() {
 multilib_src_install_all() {
 	if use pkg-config; then
 		insinto /usr/share/aclocal
-		doins "${WORKDIR}"/pkg-config-*/pkg.m4
+		sed "s:@VERSION@:${PKG_M4_VERSION}:" \
+		    "${WORKDIR}"/pkg-config-*/pkg.m4.in | \
+		newins - pkg.m4
 	fi
 
-	perl_set_version
-	insinto "${VENDOR_LIB}"
+	insinto "/usr/$(get_libdir)/perl5/vendor_perl"
 	doins -r "${S}"/OpenBSD
 }
