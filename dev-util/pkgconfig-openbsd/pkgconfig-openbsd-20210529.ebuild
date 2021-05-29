@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,11 +9,11 @@ inherit multilib-minimal
 
 PKG_M4_VERSION=0.29.2
 
-COMMIT_ID="3181cf6fc4e56c2f36b13e39b47d3fed8b70b9b4"
+COMMIT_ID="2cc45ab712729410e8d94c8ca3e2cd179a0a0491"
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
 HOMEPAGE="http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/"
-SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz
-	pkg-config? ( https://pkgconfig.freedesktop.org/releases/pkg-config-${PKG_M4_VERSION}.tar.gz )"
+SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz"
+#	pkg-config? ( https://pkgconfig.freedesktop.org/releases/pkg-config-${PKG_M4_VERSION}.tar.gz )"
 
 LICENSE="ISC"
 SLOT="0"
@@ -31,9 +31,6 @@ S=${WORKDIR}/${PN}-${COMMIT_ID}
 
 src_prepare() {
 	default
-
-	# Config.pm from dev-lang/perl doesn't set ARCH, only archname
-	sed -i -e '/Config/s:ARCH:archname:' pkg-config || die
 
 	if use pkg-config; then
 		MULTILIB_CHOST_TOOLS=( /usr/bin/pkg-config )
@@ -61,11 +58,6 @@ multilib_src_install() {
 multilib_src_install_all() {
 	if use pkg-config; then
 		insinto /usr/share/aclocal
-		sed "s:@VERSION@:${PKG_M4_VERSION}:" \
-		    "${WORKDIR}"/pkg-config-*/pkg.m4.in | \
-		newins - pkg.m4
+		doins pkg.m4
 	fi
-
-	insinto "/usr/$(get_libdir)/perl5/vendor_perl"
-	doins -r "${S}"/OpenBSD
 }
