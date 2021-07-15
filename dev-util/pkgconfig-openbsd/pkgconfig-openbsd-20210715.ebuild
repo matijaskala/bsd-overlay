@@ -9,7 +9,7 @@ inherit multilib-minimal
 
 PKG_M4_VERSION=0.29.2
 
-COMMIT_ID="2cc45ab712729410e8d94c8ca3e2cd179a0a0491"
+COMMIT_ID="5678136c4cf100cbcf055cd9a3110bd763eb1849"
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
 HOMEPAGE="http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/"
 SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz"
