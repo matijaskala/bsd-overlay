@@ -7,7 +7,7 @@ inherit multilib-minimal
 
 # cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config
 
-COMMIT_ID="8b9b9e4c85309fadf99e60f8755fca932523d9bc"
+COMMIT_ID="c97bd7982bfa4bd4440d2e0dcae49625d27526b5"
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
 HOMEPAGE="http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/"
 SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz"
