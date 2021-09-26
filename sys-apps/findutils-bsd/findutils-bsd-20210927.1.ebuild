@@ -3,18 +3,20 @@
 
 EAPI=7
 
-inherit toolchain-funcs vcs-snapshot
+inherit flag-o-matic toolchain-funcs vcs-snapshot
 
 DESCRIPTION="BSD utilities for finding files"
 HOMEPAGE="https://www.freebsd.org"
-SRC_URI="https://github.com/matijaskala/${PN}/archive/587fdf184508eae985d6193b1ef4189d0f2749fc.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/matijaskala/${PN}/archive/94dd27a8fd38d7cfa8723caeb49da74efc756cc3.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="amd64 x86"
+IUSE="elibc_musl"
 RESTRICT="mirror"
 
-DEPEND="dev-libs/libbsd"
+DEPEND="dev-libs/libbsd
+	elibc_musl? ( sys-libs/fts-standalone )"
 RDEPEND="${DEPEND}
 	!sys-freebsd/freebsd-ubin"
 
@@ -22,6 +24,7 @@ src_prepare() {
 	default
 
 	tc-export CC
+	use elibc_musl && append-cflags -lfts
 }
 
 src_install() {
