@@ -3,12 +3,11 @@
 
 EAPI=7
 
-inherit toolchain-funcs
+inherit toolchain-funcs vcs-snapshot
 
 DESCRIPTION="NetBSD regular expression matcher"
 HOMEPAGE="https://www.netbsd.org"
-COMMIT_ID="d89484451849f9a9b6c4019db29f16739b4d6e77"
-SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/matijaskala/${PN}/archive/03421f75247f85cbc1b8319a9998ff74f9e13cc8.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -16,12 +15,11 @@ KEYWORDS="amd64 x86"
 IUSE="elibc_musl"
 RESTRICT="mirror"
 
-DEPEND="dev-libs/libbsd"
+DEPEND="dev-libs/libbsd
+	elibc_musl? ( sys-libs/fts-standalone )"
 RDEPEND="${DEPEND}
 	!sys-apps/grep
 	!sys-freebsd/freebsd-ubin"
-
-S=${WORKDIR}/${PN}-${COMMIT_ID}
 
 src_prepare() {
 	default
