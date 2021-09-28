@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit flag-o-matic toolchain-funcs vcs-snapshot
+inherit toolchain-funcs vcs-snapshot
 
 DESCRIPTION="BSD utilities for finding files"
 HOMEPAGE="https://www.freebsd.org"
@@ -25,7 +25,7 @@ src_prepare() {
 	default
 
 	tc-export CC
-	use elibc_musl && append-cflags -lfts
+	use elibc_musl && export LDLIBS+=" -lfts"
 }
 
 #src_install() {
