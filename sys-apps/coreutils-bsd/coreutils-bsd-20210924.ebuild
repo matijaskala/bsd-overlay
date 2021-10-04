@@ -27,6 +27,7 @@ src_prepare() {
 	default
 
 	tc-export CC
+	use elibc_musl && export LDLIBS+=" -lfts"
 }
 
 src_install() {
