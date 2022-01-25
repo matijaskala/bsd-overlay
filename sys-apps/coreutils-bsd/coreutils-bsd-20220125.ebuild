@@ -28,6 +28,7 @@ src_prepare() {
 
 	tc-export CC
 	use elibc_musl && export LDLIBS+=" -lfts"
+	sed -i s@md5@@ Makefile || die
 }
 
 src_install() {
