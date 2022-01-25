@@ -26,5 +26,5 @@ src_prepare() {
 	default
 
 	tc-export CC
-	sed -i "/LDLIBS/s@..shell.*\$@$(usev elibc_musl -lfts)@" Makefile || die
+	sed -i "/LDLIBS/s@..shell.*\$@$(usex elibc_musl -lfts '')@" Makefile || die
 }
