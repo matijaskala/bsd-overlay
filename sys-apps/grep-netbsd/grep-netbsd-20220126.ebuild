@@ -7,7 +7,7 @@ inherit toolchain-funcs vcs-snapshot
 
 DESCRIPTION="NetBSD regular expression matcher"
 HOMEPAGE="https://www.netbsd.org"
-SRC_URI="https://github.com/matijaskala/${PN}/archive/32a51d57344ee00a70f80615394d03d2e045e5c2.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/matijaskala/${PN}/archive/b794ff62368d480cbba95ca526082e65fe6fd44e.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
