@@ -7,7 +7,7 @@ inherit toolchain-funcs vcs-snapshot
 
 DESCRIPTION="A stream editor from NetBSD"
 HOMEPAGE="https://www.netbsd.org"
-SRC_URI="https://github.com/matijaskala/${PN}/archive/6d022c8bb32e7ce979cd3e56f590c9441c2d6c12.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/matijaskala/${PN}/archive/24d3b7c126103039f4fd20ab85ff6502f5f133e7.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -16,7 +16,8 @@ IUSE="userland_GNU"
 RESTRICT="mirror"
 
 DEPEND="dev-libs/libbsd"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	!sys-apps/sed"
 
 src_prepare() {
 	default
