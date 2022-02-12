@@ -25,11 +25,20 @@ src_prepare() {
 	tc-export CC
 }
 
+multilib_src_compile() {
+	emake PREFIX="${EPREFIX}/usr"
+
+	./tic/tic -ax -o terminfo.cdb terminfo/terminfo || die
+}
+
 multilib_src_install() {
 	emake PREFIX="${EPREFIX}/usr" LIBDIR="${EPREFIX}/usr/$(get_libdir)" DESTDIR="${D}" \
 		$(usex static-libs install-libs install-dynlibs) \
 		$(usex doc install-manpages "") \
 		install-headers install-progs install-pcs
+
+	insinto /usr/share
+	doins terminfo.cdb
 
 	dodoc README.md
 
