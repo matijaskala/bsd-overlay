@@ -7,7 +7,7 @@ inherit toolchain-funcs vcs-snapshot
 
 DESCRIPTION="BSD utilities for finding files"
 HOMEPAGE="https://www.freebsd.org"
-SRC_URI="https://github.com/matijaskala/${PN}/archive/3cdb98de0cffd4c52ee71d9cee0cc70159b30c34.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/matijaskala/${PN}/archive/047e2ea1e60249ac9fe8a8318158e9c7795adca1.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
