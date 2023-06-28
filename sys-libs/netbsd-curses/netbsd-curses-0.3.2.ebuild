@@ -15,7 +15,7 @@ IUSE="+doc static-libs"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
-BDEPEND="virtual/awk"
+BDEPEND="app-alternatives/awk"
 RDEPEND="!sys-libs/ncurses"
 
 src_prepare() {
