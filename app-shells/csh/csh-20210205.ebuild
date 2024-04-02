@@ -15,6 +15,9 @@ IUSE=""
 
 S=${WORKDIR}/${PN}-${COMMIT_ID}
 
+RDEPEND="dev-libs/libedit"
+DEPEND="${RDEPEND}"
+
 src_install() {
 	into /
 	dobin csh
