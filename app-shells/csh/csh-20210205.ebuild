@@ -13,6 +13,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
+S=${WORKDIR}/${PN}-${COMMIT_ID}
+
 src_install() {
 	into /
 	dobin csh
