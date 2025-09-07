@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 2012-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,6 +14,7 @@ SRC_URI="https://github.com/matijaskala/${PN}/archive/${COMMIT_ID}.tar.gz -> ${P
 
 LICENSE="ISC"
 SLOT="0"
+IUSE="+native-symlinks"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
@@ -43,4 +44,7 @@ multilib_src_install() {
 multilib_src_install_all() {
 	insinto /usr/share/aclocal
 	doins pkg.m4
+	if ! use native-symlinks; then
+		rm "${ED}"/usr/bin/pkg-config
+	fi
 }
